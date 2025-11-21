@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Downloader</title>
+
+    <!-- Bootstrap 5.1.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f5f6fa;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+        }
+        .tab-btn {
+            font-weight: 600;
+        }
+        #result, #result2 {
+            margin-top: 15px;
+            font-weight: 600;
+        }
+        a.download-link {
+            font-size: 18px;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container py-5">
+    <h2 class="text-center mb-4">All-in-One Video Downloader</h2>
+
+    <div class="card p-4">
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-3" id="downloaderTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active tab-btn" id="insta-tab" data-bs-toggle="tab" data-bs-target="#insta" type="button">
+                    Instagram / Facebook
+                </button>
+            </li>
+
+            <li class="nav-item" role="presentation">
+                <button class="nav-link tab-btn" id="youtube-tab" data-bs-toggle="tab" data-bs-target="#youtube" type="button">
+                    YouTube
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+
+            <!-- Instagram / Facebook Tab -->
+            <div class="tab-pane fade show active" id="insta">
+
+                <h5 class="mb-3">Instagram / Facebook Downloader</h5>
+
+                <input type="text" id="socialUrl" class="form-control" placeholder="Enter Instagram or Facebook URL">
+
+                <button class="btn btn-primary mt-3 w-100" onclick="downloadSocial()">Download</button>
+
+                <p id="result"></p>
+            </div>
+
+            <!-- YouTube Tab -->
+            <div class="tab-pane fade" id="youtube">
+
+                <h5 class="mb-3">YouTube Downloader</h5>
+
+                <input type="text" id="videoUrl" class="form-control" placeholder="Enter YouTube URL">
+
+                <select id="format" class="form-select mt-3">
+                    <option value="mp4">Video (MP4)</option>
+                    <option value="mp3">Audio (MP3)</option>
+                </select>
+
+                <button class="btn btn-danger mt-3 w-100" onclick="downloadYouTube()">Download</button>
+
+                <p id="result2"></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+// Instagram / Facebook Download
+async function downloadSocial() {
+    const url = document.getElementById("socialUrl").value;
+    const result = document.getElementById("result");
+
+    if (!url) return result.innerHTML = "❌ Please enter URL";
+
+    result.innerHTML = "⏳ Processing...";
+
+    const res = await fetch("/download", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url })
+    });
+
+    const data = await res.json();
+
+    if (data.error) return result.innerHTML = "❌ Error: " + data.error;
+
+    result.innerHTML = `<a class="download-link" href="${data.downloadUrl}" download>⬇️ Click here to download</a>`;
+}
+
+// YouTube Download
+async function downloadYouTube() {
+    const url = document.getElementById("videoUrl").value;
+    const format = document.getElementById("format").value;
+    const result = document.getElementById("result2");
+
+    if (!url) return result.innerHTML = "❌ Please enter URL";
+
+    result.innerHTML = "⏳ Processing...";
+
+    const res = await fetch("/download", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, format })
+    });
+
+    const data = await res.json();
+
+    if (data.error) return result.innerHTML = "❌ Error: " + data.error;
+
+    result.innerHTML = `<a class="download-link" href="${data.downloadUrl}" download>⬇️ Click here to download</a>`;
+}
+
+</script>
+
+</body>
+</html>
