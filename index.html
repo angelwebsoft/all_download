@@ -5,118 +5,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Downloader</title>
 
-    <!-- Bootstrap 5.1.3 -->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
-        body {
-            background: #f5f6fa;
-        }
-        .card {
-            border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
-        }
-        .tab-btn {
-            font-weight: 600;
-        }
-        #result, #result2 {
-            margin-top: 15px;
-            font-weight: 600;
-        }
-        a.download-link {
-            font-size: 18px;
-            color: #0d6efd;
-        }
+        body { background: #f5f6fa; }
+        .card { border-radius: 12px; box-shadow: 0px 4px 12px rgba(0,0,0,0.08); }
+        .tab-btn { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        #result, #result2 { margin-top: 15px; font-weight: 600; }
     </style>
 </head>
 
 <body>
 
 <div class="container py-5">
-    <h2 class="text-center mb-4">All-in-One Video Downloader</h2>
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6">
 
-    <div class="card p-4">
+            <h2 class="text-center mb-4">Video Downloader</h2>
 
-        <!-- Tabs -->
-        <ul class="nav nav-tabs mb-3" id="downloaderTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active tab-btn" id="insta-tab" data-bs-toggle="tab" data-bs-target="#insta" type="button">
-                    Instagram / Facebook
-                </button>
-            </li>
+            <div class="card p-4">
 
-            <li class="nav-item" role="presentation">
-                <button class="nav-link tab-btn" id="youtube-tab" data-bs-toggle="tab" data-bs-target="#youtube" type="button">
-                    YouTube
-                </button>
-            </li>
-        </ul>
+                <!-- TABS -->
+                <ul class="nav nav-tabs mb-3" id="downloaderTab" role="tablist">
 
-        <!-- Tab Content -->
-        <div class="tab-content">
+                    <!-- Instagram / Facebook Tab -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active tab-btn fs-4" id="insta-tab" data-bs-toggle="tab" data-bs-target="#insta" type="button">
+                            <i class="fab fa-instagram"></i> /
+                            <i class="fab fa-facebook"></i>
+                        </button>
+                    </li>
 
-            <!-- Instagram / Facebook Tab -->
-            <div class="tab-pane fade show active" id="insta">
+                    <!-- YouTube Tab -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link tab-btn fs-4" id="youtube-tab" data-bs-toggle="tab" data-bs-target="#youtube" type="button">
+                            <i class="fab fa-youtube"></i>
+                        </button>
+                    </li>
 
-                <h5 class="mb-3">Instagram / Facebook Downloader</h5>
+                </ul>
 
-                <input type="text" id="socialUrl" class="form-control" placeholder="Enter Instagram or Facebook URL">
+                <div class="tab-content">
 
-                <button class="btn btn-primary mt-3 w-100" onclick="downloadSocial()">Download</button>
+                    <!-- ==================== INSTAGRAM / FACEBOOK ==================== -->
+                    <div class="tab-pane fade show active" id="insta">
+                    
+                        <input type="text" id="socialUrl" class="form-control" placeholder="Enter Instagram or Facebook URL">
 
-                <p id="result"></p>
+                        <button class="btn btn-primary mt-3 w-100" onclick="getSocialInfo()">
+                            <i class="fa-solid fa-magnifying-glass"></i> Get Video
+                        </button>
+
+                        <div id="preview" class="mt-4" style="display:none;">
+                            <img id="previewImg" src="" class="img-fluid rounded mb-3">
+
+                            <button id="downloadBtn" class="btn btn-success w-100" onclick="startSocialDownload()">
+                                <i class="fa-solid fa-download"></i> Download Video
+                            </button>
+                        </div>
+
+                        <p id="result"></p>
+                    </div>
+
+                    <!-- ==================== YOUTUBE ==================== -->
+                    <div class="tab-pane fade" id="youtube">
+
+                        <input type="text" id="videoUrl" class="form-control" placeholder="Enter YouTube URL">
+
+                        <select id="format" class="form-select mt-3">
+                            <option value="mp4">Video (MP4)</option>
+                            <option value="mp3">Audio (MP3)</option>
+                        </select>
+
+                        <button class="btn btn-danger mt-3 w-100" onclick="downloadYouTube()">
+                            <i class="fa-solid fa-download"></i> Download
+                        </button>
+
+                        <p id="result2"></p>
+                    </div>
+
+                </div>
+
             </div>
-
-            <!-- YouTube Tab -->
-            <div class="tab-pane fade" id="youtube">
-
-                <h5 class="mb-3">YouTube Downloader</h5>
-
-                <input type="text" id="videoUrl" class="form-control" placeholder="Enter YouTube URL">
-
-                <select id="format" class="form-select mt-3">
-                    <option value="mp4">Video (MP4)</option>
-                    <option value="mp3">Audio (MP3)</option>
-                </select>
-
-                <button class="btn btn-danger mt-3 w-100" onclick="downloadYouTube()">Download</button>
-
-                <p id="result2"></p>
-            </div>
-
         </div>
     </div>
 </div>
 
-
-<!-- Bootstrap JS -->
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+let cachedURL = "";
 
-// Instagram / Facebook Download
-async function downloadSocial() {
+/* =====================================================
+   GET INFO FOR INSTAGRAM / FACEBOOK
+===================================================== */
+async function getSocialInfo() {
     const url = document.getElementById("socialUrl").value;
     const result = document.getElementById("result");
 
     if (!url) return result.innerHTML = "❌ Please enter URL";
 
-    result.innerHTML = "⏳ Processing...";
+    result.innerHTML = "⏳ Fetching video info...";
 
-    const res = await fetch("/download", {
+    const info = await fetch("/get-info", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url })
+    });
+
+    const data = await info.json();
+
+    if (data.error) return result.innerHTML = "❌ Error: " + data.error;
+
+    document.getElementById("previewImg").src = data.thumbnail;
+    document.getElementById("preview").style.display = "block";
+
+    result.innerHTML = `📌 <b>${data.title}</b>`;
+
+    cachedURL = url;
+}
+
+/* =====================================================
+   DIRECT DOWNLOAD (AUTO START) — IG / FB
+===================================================== */
+async function startSocialDownload() {
+    const result = document.getElementById("result");
+    result.innerHTML = "⏳ Downloading...";
+
+    const res = await fetch("/download", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ url: cachedURL })
     });
 
     const data = await res.json();
 
     if (data.error) return result.innerHTML = "❌ Error: " + data.error;
 
-    result.innerHTML = `<a class="download-link" href="${data.downloadUrl}" download>⬇️ Click here to download</a>`;
+    let filename = "video.mp4";
+
+    // Use filename from server if provided
+    if (data.filename) {
+        filename = data.filename;
+    } else {
+        // Try extract from URL
+        const last = data.downloadUrl.split("/").pop().split("?")[0];
+        filename = last.includes(".") ? last : `video_${Date.now()}.mp4`;
+    }
+
+    await downloadFileFromUrl(data.downloadUrl, filename);
+
+    result.innerHTML = "✅ Download Completed";
 }
 
-// YouTube Download
+/* =====================================================
+   YOUTUBE DOWNLOAD — AUTO START
+===================================================== */
 async function downloadYouTube() {
     const url = document.getElementById("videoUrl").value;
     const format = document.getElementById("format").value;
@@ -128,19 +177,43 @@ async function downloadYouTube() {
 
     const res = await fetch("/download", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ url, format })
     });
 
     const data = await res.json();
-
     if (data.error) return result.innerHTML = "❌ Error: " + data.error;
 
-    result.innerHTML = `<a class="download-link" href="${data.downloadUrl}" download>⬇️ Click here to download</a>`;
+    let filename = "video.mp4";
+
+    if (data.filename) {
+        filename = data.filename;
+    } else {
+        const last = data.downloadUrl.split("/").pop().split("?")[0];
+        filename = last.includes(".") ? last : `youtube_${Date.now()}.${format}`;
+    }
+
+    await downloadFileFromUrl(data.downloadUrl, filename);
+
+    result.innerHTML = "✅ Download Completed";
 }
 
+/* =====================================================
+   CLIENT-SIDE DOWNLOAD FILE FUNCTION
+===================================================== */
+async function downloadFileFromUrl(url, filename) {
+    const response = await fetch(url);
+    const blob = await response.blob();
+
+    const link = document.createElement("a");
+    link.href = window.URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+
+    // Clean URL
+    setTimeout(() => window.URL.revokeObjectURL(link.href), 1000);
+}
 </script>
 
 </body>
 </html>
- 

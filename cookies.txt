@@ -72,12 +72,11 @@ accounts.google.com	FALSE	/	TRUE	1798261572	__Host-3PLSID	o.chat.google.com|o.ch
 .youtube.com	TRUE	/	TRUE	1795239272	__Secure-1PSIDTS	sidts-CjQBwQ9iI6ZiNs2NoVN7XOlQ3CiZ364qhEMIpFXvbkikcwYsM7-IGQcIX8rwAcCEx0QL8bKfEAA
 .youtube.com	TRUE	/	TRUE	1795239272	__Secure-3PSIDTS	sidts-CjQBwQ9iI6ZiNs2NoVN7XOlQ3CiZ364qhEMIpFXvbkikcwYsM7-IGQcIX8rwAcCEx0QL8bKfEAA
 .youtube.com	TRUE	/	TRUE	1795240089	__Secure-3PSIDCC	AKEyXzUKBKYFh0RcEtc1qkUnsj5JATyKn3UgUB1ZjmwnPLLJ_pU5xDG6WzhSRG-iiEA6DIkT
-.youtube.com	TRUE	/	TRUE	1779271880	VISITOR_INFO1_LIVE	LETRqr4r6e0
-.youtube.com	TRUE	/	TRUE	1779271880	VISITOR_PRIVACY_METADATA	CgJJThIEGgAgJA%3D%3D
+.youtube.com	TRUE	/	TRUE	1779279211	VISITOR_INFO1_LIVE	LETRqr4r6e0
+.youtube.com	TRUE	/	TRUE	1779279211	VISITOR_PRIVACY_METADATA	CgJJThIEGgAgJA%3D%3D
 .youtube.com	TRUE	/	TRUE	1779255275	__Secure-ROLLOUT_TOKEN	CKW0oJmYjKjDCxDn8Jmu0puQAxjjqu3gwoKRAw%3D%3D
 .youtube.com	TRUE	/	TRUE	0	SOCS	CAI
-.youtube.com	TRUE	/	TRUE	1763721680	GPS	1
-.youtube.com	TRUE	/	TRUE	0	YSC	p2_acxs5kMw
+.youtube.com	TRUE	/	TRUE	0	YSC	x4JqfRTK0V4
 .google.co.in	TRUE	/	FALSE	1794102707	HSID	A8vu-9XCvzpxLK8Fe
 .google.co.in	TRUE	/	TRUE	1794102707	SSID	A6XGv_DJm9NYMv7JC
 .google.co.in	TRUE	/	FALSE	1794102707	APISID	md2Bwotu-rOQ4tI4/AVuhGSdYvh16C1hXB
@@ -144,7 +143,6 @@ www.perplexity.ai	FALSE	/	FALSE	1791348935	gov-badge	3
 www.perplexity.ai	FALSE	/	FALSE	1793438050	sidebar-upgrade-badge	10
 www.perplexity.ai	FALSE	/	TRUE	0	next-auth.csrf-token	b5efe28326763a80a9cb20a1843a1be49de69ba35d40ddbae0215fea08186ee4%7Cdfd9eed1f8afe91b1f2d3007dfc87d7484aab0805a3f350dfc435ae471e97a01
 www.perplexity.ai	FALSE	/	TRUE	0	next-auth.callback-url	https%3A%2F%2Fwww.perplexity.ai%2Fapi%2Fauth%2Fsignin-callback%3Fredirect%3Dhttps%253A%252F%252Fwww.perplexity.ai
-www.perplexity.ai	FALSE	/	TRUE	1763722606	__cflb	02DiuDyvFMmK5p9jVbVnMNSKYZhUL9aGmzUv1WJZ712SQ
 www.perplexity.ai	FALSE	/	FALSE	1798200250	pplx.metadata	{%22qc%22:108%2C%22qcu%22:0%2C%22qcm%22:0%2C%22qcc%22:0%2C%22qcco%22:0%2C%22qccol%22:0%2C%22qcdr%22:0%2C%22qcs%22:0%2C%22qcd%22:0%2C%22hli%22:true%2C%22hcga%22:false%2C%22hcds%22:false%2C%22hso%22:false%2C%22hfo%22:false%2C%22hsco%22:false%2C%22hfco%22:false%2C%22hsma%22:false%2C%22hdc%22:false%2C%22fqa%22:1759551808996%2C%22lqa%22:1763640221762}
 www.perplexity.ai	FALSE	/	TRUE	1766234570	__Secure-next-auth.session-token	eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..pAW5AHaHY-NkRg4-.bOgkjW83yZ9eSqwhOLsfkyq5cOVn8NgVN1Kq-aeT_kZl51oYekT58sEa0Ig7EbSNG_715tHOdNx0Yi85V8t2p_AZkbSUmwjLlT_sYGKrzmrPJB2-btrAJl_g6i6JHSF4z0CHzA8zj2DzUuVJXRyFl1urrav4OFwrJWkfldK2b-U5uSVRSlwVU-KVIpqglSTLp-GIC5qaDKF9wga16JaOOgIH23y9tq80RYwHGocJD28lM-MR3tV4jMiKv-8Q6BwSa_qVlGymMArDy24zd3BqcMSrmaaAS_d1qMy8FfHvzHR83NipnL2hTNZBjQfCBsHhJdcvbBme-tS9PukmvWemjOyHj9pd64nxBv5J9fgRp1MggbL8tuvkpaafgO32eIIbJjLwLg0cPgDr6sKWT1BZ2c15IJ6i8hvOn5UMQ1SQp59O.G6PkUSh3u2a1zRmgD3zsfg
 www.perplexity.ai	FALSE	/	FALSE	1795181331	_dd_s	isExpired=1&aid=57517d7f-a0ca-498e-895e-18c24491831e
@@ -467,8 +465,6 @@ one.google.com	FALSE	/	TRUE	1766121083	OTZ	8353751_34_34__34_
 tools.pingdom.com	FALSE	/	FALSE	1764306855	AWSALB	6p2f5zJxxt9AzSgsTt8TaCjM71rDLvcVTq185KqaKW2fMd6NSGP7wO2zL/Et6JCVHw1Y3La4a659og3TN7DZQ2dfb6rLrHgYWo90v0ZfTMl+SLG+nT+VUl640acU
 tools.pingdom.com	FALSE	/	TRUE	1764306855	AWSALBCORS	6p2f5zJxxt9AzSgsTt8TaCjM71rDLvcVTq185KqaKW2fMd6NSGP7wO2zL/Et6JCVHw1Y3La4a659og3TN7DZQ2dfb6rLrHgYWo90v0ZfTMl+SLG+nT+VUl640acU
 tools.pingdom.com	FALSE	/	TRUE	0	connect.sid	s%3A2E-eGxfZ3IbQcev7gyJbmEUZDDnv5_zy.RCm2OqhnBSKSWZj7muZuJMZENZ90afqof8PBNaoXacE
-pplx-next-static-public.perplexity.ai	FALSE	/	TRUE	1763726206	CF_AppSession	n747abb09345dcffb
-10.2.7.18	FALSE	/	FALSE	1763729930	connect.sid	s%3AT7MFJwKZrh7wuuEYAMypW5YyI9C14YSi.JsC5Tp5drT6XdKO%2B4i9woaLCb9nryu0S%2BR9%2BOqmpIGE
 .translate-pa.googleapis.com	TRUE	/	FALSE	1779511315	NID	526=I8HV5rhfvsNm_dEYF-r-Xo2jf-Oq7aXiKOMh-R1aaKG5ep_Q0aLae2_wlxWMIUS2KDuwVcV7lIav5lPokBmF_W9J-24Pxsj8KumND8PZ2L8p_5w-ywXh2LfxLcXFQqg2bkdIw5UyyKr0P1hwaTWr8okXetI4OIH-rPUELctWRjhbODrRKHBGrHJq-UhfOXWMdg
 tasks-pa.clients6.google.com	FALSE	/	TRUE	1764564573	COMPASS	tasks-api=CgAQ-_r_yAYaXwAJa4lX5WRHxz-qTMCwHmZ1WmClNwmV7GjISH8qRqK3S6XoHfwYNrwBKQKZ1nc6sgnQk-GvDpzbT4FGNZ6hs91kNPlv_6S0Gd1tfQnZzD1I6uaRjBegmToAh7ggSllbIAEwAQ
 turbo-garbanzo-qrv7g9xjq729jr.github.dev	FALSE	/	TRUE	1794606657	cs-workbench-type	codespaces
@@ -483,15 +479,15 @@ chromewebstore.google.com	FALSE	/	TRUE	1798261572	__Secure-OSID	g.a0003wgQYZmnU_
 chromewebstore.google.com	FALSE	/	TRUE	1766293573	OTZ	8356626_34_34__34_
 .chromewebstore.google.com	TRUE	/	FALSE	1798261603	_ga	GA1.1.977417273.1763701573
 .chromewebstore.google.com	TRUE	/	FALSE	1798262145	_ga_KHZNC1Q6K0	GS2.1.s1763701573$o1$g1$t1763702145$j60$l0$h0
-.instagram.com	TRUE	/	TRUE	1798279894	csrftoken	6444vEKUAEBhdVON4sN42c
+.instagram.com	TRUE	/	TRUE	1798290635	csrftoken	6444vEKUAEBhdVON4sN42c
 .instagram.com	TRUE	/	TRUE	1798261627	datr	ifMfaat59Z7kvdNS8EDOeXpJ
 .instagram.com	TRUE	/	TRUE	1795237684	ig_did	50ABE2B0-AEFE-49F2-9F33-E0D07AA01813
 .instagram.com	TRUE	/	TRUE	1764306493	dpr	1
 .instagram.com	TRUE	/	TRUE	1798261628	mid	aR_ziQAEAAHbc92rNyEIlPod2xIb
 .instagram.com	TRUE	/	TRUE	1764306494	wd	663x399
 .instagram.com	TRUE	/	TRUE	1795237684	sessionid	3078964070%3AWD0ElAFfqYTyG0%3A6%3AAYgRlX7eDg-uEPMqum-f_4w2eoZuOi6ZrTpgc0vyOA
-.instagram.com	TRUE	/	TRUE	1771495894	ds_user_id	3078964070
-.instagram.com	TRUE	/	TRUE	0	rur	"RVA\0543078964070\0541795255909:01fe80a761106c3247d8bd57123fba245983cb58a40d683a21aafe17845e111b669652a6"
+.instagram.com	TRUE	/	TRUE	1771506635	ds_user_id	3078964070
+.instagram.com	TRUE	/	TRUE	0	rur	"RVA\0543078964070\0541795266650:01fee9a56fe358777f18474b870b3b3cb07a1b3147c386a330f3c6ae4a487a6e9e30fac4"
 .facebook.com	TRUE	/	TRUE	1771477690	fr	0lqZBu35AilazEvli.AWcs9KMHLqPYC6i24viI5JMi4NSGQT0vejd2x9BzTYw5ot1KjXY.BpH_PI..AAA.0.0.BpH_PI.AWfrSMQRgWfzcpBLVfVjB3FwpGE
 .facebook.com	TRUE	/	TRUE	1798263176	sb	iPkfaUuWPDC9oLmChGNUqd3F
 .accounts.livechatinc.com	TRUE	/v2/customer/a1b8c197-8e86-47d8-865b-ac5b088cb94e/5/token	TRUE	1796459430	__lc_cid	41aedbab-d8fb-46e0-818a-f609ce279373
@@ -503,4 +499,3 @@ chromewebstore.google.com	FALSE	/	TRUE	1766293573	OTZ	8356626_34_34__34_
 .codepen.io	TRUE	/	TRUE	1793438172	cf_clearance	Gp6fmJGAJOJFDQdqs5_UjjEuwDCDc68lIOLG4NFsJTg-1761902172-1.2.1.1-J669sJ7km5IL2OLHoxZkx3q9ApmAPWeqWscrfpHJvUqHrI5VDUae5hvQiLCIFxVzufZFjIg2Qo_XFEwK.tPqKC11zjf09KWk2ih9_FpmJ8kNbibykg45kKCaM0Wvdgw_oLHnTYuiYJIrNzPYqzLpT88rzd.TnFOgBoPK9LjvDulEHuHj7NUwFXKpSttKVvssJiFM_Gxxy0X6Qnwc_1xDfAkK3j7BgjXiRwqlad.aR4g
 glorious-space-robot-w6vrj94jgqfqrw-3000.app.github.dev	FALSE	/	TRUE	1794286653	tunnel_phishing_protection	majestic-dog-sfg101k.inc1
 api.hcaptcha.com	FALSE	/	TRUE	1765356283	hmt_id	6c89d24e-2247-4550-b412-d26951eba71f
- 

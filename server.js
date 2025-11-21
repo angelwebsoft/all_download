@@ -18,20 +18,64 @@ if (!fs.existsSync(downloadsFolder)) fs.mkdirSync(downloadsFolder);
 const ytdlp = path.join(__dirname, "yt-dlp");
 const cookies = path.join(__dirname, "cookies.txt");
 
+/* ----------------------------------------------------------
+   FETCH VIDEO INFO (THUMBNAIL, TITLE)
+----------------------------------------------------------- */
+app.post("/get-info", (req, res) => {
+    const { url } = req.body;
+
+    if (!url) return res.json({ error: "URL missing" });
+
+    const command = `${ytdlp} --cookies "${cookies}" --dump-json "${url}"`;
+
+    exec(command, { maxBuffer: 1024 * 5000 }, (err, stdout) => {
+        if (err) {
+            console.log("Meta fetch error:", err);
+            return res.json({ error: "Could not fetch video info" });
+        }
+
+        try {
+            const info = JSON.parse(stdout);
+
+            return res.json({
+                success: true,
+                title: info.title || "No title",
+                thumbnail:
+                    info.thumbnail ||
+                    (info.thumbnails && info.thumbnails.length > 0
+                        ? info.thumbnails[0].url
+                        : ""),
+            });
+        } catch (e) {
+            return res.json({ error: "Invalid info received" });
+        }
+    });
+});
+
+/* ----------------------------------------------------------
+   DOWNLOAD SYSTEM + AUTO DELETE + DYNAMIC FILENAME
+----------------------------------------------------------- */
 app.post("/download", (req, res) => {
     const { url, format } = req.body;
 
     if (!url) return res.json({ error: "URL missing" });
 
-    const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
-    const filename = `video_${Date.now()}.${format === "mp3" ? "mp3" : "mp4"}`;
+    // Detect Platform
+    let prefix = "video";
+
+    if (url.includes("instagram.com")) prefix = "insta";
+    else if (url.includes("facebook.com") || url.includes("fb.watch")) prefix = "fb";
+    else if (url.includes("youtube.com") || url.includes("youtu.be")) prefix = "yt";
+
+    const extension = format === "mp3" ? "mp3" : "mp4";
+    const filename = `${prefix}_${Date.now()}.${extension}`;
     const output = path.join(downloadsFolder, filename);
 
     let command;
 
-    // ------------------------------------------
-    // YOUTUBE (MP4 / MP3)
-    // ------------------------------------------
+    const isYouTube = prefix === "yt";
+
+    // YouTube Logic
     if (isYouTube) {
         if (format === "mp3") {
             command = `${ytdlp} --cookies "${cookies}" -x --audio-format mp3 -o "${output}" "${url}"`;
@@ -39,10 +83,7 @@ app.post("/download", (req, res) => {
             command = `${ytdlp} --cookies "${cookies}" -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]" -o "${output}" "${url}"`;
         }
     }
-
-    // ------------------------------------------
-    // INSTAGRAM / FACEBOOK
-    // ------------------------------------------
+    // Instagram / Facebook Logic
     else {
         command = `${ytdlp} --cookies "${cookies}" --user-agent "Mozilla/5.0" -o "${output}" "${url}"`;
     }
@@ -55,14 +96,28 @@ app.post("/download", (req, res) => {
             return res.json({ error: "Download failed. Check URL or login required." });
         }
 
-        return res.json({
+        // Send file URL
+        res.json({
             success: true,
             downloadUrl: `/downloads/${filename}`,
+            filename: filename
         });
+
+        /* ---------------------------------------------------
+           AUTO DELETE FILE AFTER 2 MINUTES
+        --------------------------------------------------- */
+        setTimeout(() => {
+            fs.unlink(output, (err) => {
+                if (!err) {
+                    console.log("🗑️ Auto-deleted:", output);
+                } else {
+                    console.log("⚠️ Delete failed:", err);
+                }
+            });
+        }, 2 * 60 * 1000); // 2 minutes
     });
 });
 
 app.listen(PORT, () => {
     console.log(`Server running: http://localhost:${PORT}`);
 });
- 
